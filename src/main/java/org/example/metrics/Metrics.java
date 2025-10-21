@@ -9,13 +9,13 @@ public class Metrics {
 
     public void incComparisons() { comparisons++; }
     public void addComparisons(long k) { comparisons += k; }
-    public void incHeapOps() { heapOpers++; }
+    public void incHeapOpers() { heapOpers++; }
     public void incUnions() { unions++; }
     public void incFinds() { finds++; }
     public void incEdgeAdditions() { edgeAdditions++; }
 
     public long getComparisons() { return comparisons; }
-    public long getHeapOps() { return heapOpers; }
+    public long getHeapOperss() { return heapOpers; }
     public long getUnions() { return unions; }
     public long getFinds() { return finds; }
     public long getEdgeAdditions() { return edgeAdditions; }
