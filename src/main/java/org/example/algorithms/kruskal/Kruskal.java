@@ -62,7 +62,7 @@ public class Kruskal {
     public Metrics getMetrics() {
         return metrics;
     }
-    public long getExecTimeMs() {
+    public long getTimeMs() {
         return timeMs;
     }
 }
