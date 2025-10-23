@@ -9,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 import org.example.io.*;
 
@@ -46,6 +43,42 @@ public class Tests {
             //kruskal
             Kruskal kruskal = new Kruskal(graph);
             kruskal.runKruskal();
+
+            // check for correctness
+            int vertices = graph.vertexCount();
+
+            // The total cost of the MST is identical for both algorithms.
+            if (prim.getTotalCost() != kruskal.getTotalCost()) {
+                throw new AssertionError("Total MST cost mismatch for graph " + gEntry.id);
+            }
+
+            //The number of edges in each MST equals V − 1.
+            if (prim.getMstEdges().size() != vertices - 1) {
+                throw new AssertionError("Prim MST edge count != V−1 for graph " + gEntry.id);
+            }
+            if (kruskal.getMstEdges().size() != vertices - 1) {
+                throw new AssertionError("Kruskal MST edge count != V−1 for graph " + gEntry.id);
+            }
+
+            //The MST contains no cycles (acyclic).
+            if (!isAcyclic(prim.getMstEdges())) {
+                throw new AssertionError("Prim MST contains a cycle for graph " + gEntry.id);
+            }
+            if (!isAcyclic(kruskal.getMstEdges())) {
+                throw new AssertionError("Kruskal MST contains a cycle for graph " + gEntry.id);
+            }
+
+            //Each MST connects all vertices (single connected component).
+            if (!isConnected(prim.getMstEdges(), graph.getVertices())) {
+                throw new AssertionError("Prim MST not connected for graph " + gEntry.id);
+            }
+            if (!isConnected(kruskal.getMstEdges(), graph.getVertices())) {
+                throw new AssertionError("Kruskal MST not connected for graph " + gEntry.id);
+            }
+
+
+
+
 
             Output.AlgorithmResult primResult = new Output.AlgorithmResult(
                     prim.getMstEdges(),
@@ -97,6 +130,60 @@ public class Tests {
         System.out.println("Output written to: " + output_test);
         System.out.println("CSV summary written to: " + csv_results);
     }
+
+    private boolean isAcyclic(List<org.example.graph.Edge> edges) {
+        Map<String, String> parent = new HashMap<>();
+
+        for (org.example.graph.Edge e : edges) {
+            parent.putIfAbsent(e.getFrom(), e.getFrom());
+            parent.putIfAbsent(e.getTo(), e.getTo());
+        }
+
+        java.util.function.Function<String, String> find = new java.util.function.Function<>() {
+            @Override
+            public String apply(String x) {
+                if (!parent.get(x).equals(x))
+                    parent.put(x, this.apply(parent.get(x)));
+                return parent.get(x);
+            }
+        };
+
+        for (org.example.graph.Edge e : edges) {
+            String rootU = find.apply(e.getFrom());
+            String rootV = find.apply(e.getTo());
+            if (rootU.equals(rootV)) return false;
+            parent.put(rootU, rootV);
+        }
+        return true;
+    }
+
+    private boolean isConnected(List<org.example.graph.Edge> edges, Set<String> vertices) {
+        if (edges.isEmpty()) return vertices.size() <= 1;
+        Map<String, List<String>> adj = new HashMap<>();
+        for (org.example.graph.Edge e : edges) {
+            adj.computeIfAbsent(e.getFrom(), k -> new ArrayList<>()).add(e.getTo());
+            adj.computeIfAbsent(e.getTo(), k -> new ArrayList<>()).add(e.getFrom());
+        }
+
+        Set<String> visited = new HashSet<>();
+        Deque<String> stack = new ArrayDeque<>();
+        String start = vertices.iterator().next();
+        stack.push(start);
+
+        while (!stack.isEmpty()) {
+            String v = stack.pop();
+            if (!visited.add(v)) continue;
+            for (String n : adj.getOrDefault(v, Collections.emptyList())) {
+                if (!visited.contains(n)) stack.push(n);
+            }
+        }
+        return visited.containsAll(vertices);
+    }
+
+
+
+
+
 
 
 }
