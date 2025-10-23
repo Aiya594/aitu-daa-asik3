@@ -11,7 +11,7 @@ public class Prim {
     private final Metrics metrics = new Metrics();
     private final List<Edge> mst = new ArrayList<>();
     private long totalCost = 0;
-    private long timeMs = 0;
+    private double timeMs = 0;
 
     public Prim(Graph g) {
         this.g = g;
@@ -68,7 +68,7 @@ public class Prim {
 
 
         long endTime = System.nanoTime();
-        timeMs = (endTime - startTime) / 1_000_000;
+        timeMs = (endTime - startTime) / 1_000_000.0;
     }
 
     public List<Edge> getMstEdges() {
@@ -80,7 +80,7 @@ public class Prim {
     public Metrics getMetrics() {
         return metrics;
     }
-    public long getTimeMs() {
+    public double getTimeMs() {
         return timeMs;
     }
 

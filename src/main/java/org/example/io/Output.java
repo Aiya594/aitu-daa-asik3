@@ -13,8 +13,6 @@ public class Output {
         this.results = results;
     }
 
-
-
     public static class AlgorithmResult {
         public final List<Edge> mst_edges;
         public final long total_cost;

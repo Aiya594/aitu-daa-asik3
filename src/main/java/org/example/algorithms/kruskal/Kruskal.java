@@ -13,7 +13,7 @@ public class Kruskal {
     private final Metrics metrics = new Metrics();
     private final List<Edge> mst = new ArrayList<>();
     private long totalCost = 0;
-    private long timeMs = 0;
+    private double timeMs = 0;
 
     public Kruskal(Graph g) {
         this.g = g;
@@ -51,7 +51,7 @@ public class Kruskal {
         }
 
         long endTime = System.nanoTime();
-        timeMs = (endTime - startTime) / 1_000_000;
+        timeMs = (endTime - startTime) / 1_000_000.0;
     }
     public List<Edge> getMstEdges() {
         return List.copyOf(mst);
@@ -62,7 +62,7 @@ public class Kruskal {
     public Metrics getMetrics() {
         return metrics;
     }
-    public long getTimeMs() {
+    public double getTimeMs() {
         return timeMs;
     }
 }

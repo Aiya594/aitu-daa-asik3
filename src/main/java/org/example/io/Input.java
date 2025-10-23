@@ -1,12 +1,14 @@
 package org.example.io;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.example.graph.Edge;
 
 import java.util.List;
 
 public class Input {
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Graphs {
         public final int id;
         public final List<String> nodes;

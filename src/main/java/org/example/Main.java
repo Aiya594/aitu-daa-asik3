@@ -8,7 +8,6 @@ import org.example.graph.Graph;
 import org.example.io.*;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +37,7 @@ public class Main {
             // Prim
             Prim prim = new Prim(graph);
             prim.runPrim();
+
             // Kruskal
             Kruskal kruskal = new Kruskal(graph);
             kruskal.runKruskal();

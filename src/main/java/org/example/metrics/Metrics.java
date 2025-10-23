@@ -14,12 +14,6 @@ public class Metrics {
     public void incFinds() { finds++; }
     public void incEdgeAdditions() { edgeAdditions++; }
 
-    public long getComparisons() { return comparisons; }
-    public long getHeapOperss() { return heapOpers; }
-    public long getUnions() { return unions; }
-    public long getFinds() { return finds; }
-    public long getEdgeAdditions() { return edgeAdditions; }
-
     public long totalOpers() {
         return comparisons + heapOpers + unions + finds + edgeAdditions;
     }
