@@ -76,7 +76,7 @@ For all datasets correctness confirmed:
 | Practical Efficiency Trend | Slightly slower on small graphs, but more stable overall              | Very fast on small graphs, slower on dense large graphs                            |
 | Best Use Case              | Dense graphs, adjacency-based data (e.g. city road networks)          | Sparse graphs, edge-list data (e.g. telecom, map data)                             |
 
-
+---
 ### Conclusion
 
 Both **Prim’s** and **Kruskal’s** algorithms successfully optimized the city transportation network by producing identical Minimum Spanning Tree (MST) costs for all datasets, confirming the correctness of both implementations.
@@ -90,7 +90,13 @@ Conversely, for **sparser networks** (like rural or infrastructural systems with
 
 Overall, both algorithms are equally correct in terms of MST construction, but **Prim’s** is preferable for large, dense transportation systems, while **Kruskal’s** excels in smaller or sparse environments.
 
-
-
+---
+### References
+* GeeksforGeeks. (n.d.). Prim’s vs Kruskal’s Algorithm – Comparison and
+  Implementation.  https://www.geeksforgeeks.org/
+* Programiz. (n.d.). Kruskal’s Algorithm. https://www.programiz.com/dsa/kruskal
+  algorithm 
+* Programiz. (n.d.). Prim’s Algorithm.  https://www.programiz.com/dsa/prim
+   algorithm
 
 
