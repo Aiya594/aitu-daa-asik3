@@ -94,9 +94,7 @@ Overall, both algorithms are equally correct in terms of MST construction, but *
 ### References
 * GeeksforGeeks. (n.d.). Prim’s vs Kruskal’s Algorithm – Comparison and
   Implementation.  https://www.geeksforgeeks.org/
-* Programiz. (n.d.). Kruskal’s Algorithm. https://www.programiz.com/dsa/kruskal
-  algorithm 
-* Programiz. (n.d.). Prim’s Algorithm.  https://www.programiz.com/dsa/prim
-   algorithm
+* Programiz. (n.d.). Kruskal’s Algorithm. https://www.programiz.com/dsa/kruskal-algorithm 
+* Programiz. (n.d.). Prim’s Algorithm.  https://www.programiz.com/dsa/prim-algorithm
 
 
