@@ -18,6 +18,7 @@ public class UnionFind {
         }
     }
 
+    //returns root of x vertex
     public String find(String x) {
         metrics.incFinds();
         String p = parent.get(x);
@@ -30,15 +31,19 @@ public class UnionFind {
         return p;
     }
 
+    //union by rank
     public boolean union(String a, String b) {
         metrics.incUnions();
 
+        //fina roots of a and b
         String ra = find(a);
         String rb = find(b);
 
+        //if they share same root trey are already connected
         if (ra.equals(rb)) {
             return false;
         }
+        //then need to find the greatest rank and then attachthe smaller tree under the greater one
         int rA = rank.get(ra);
         int rB = rank.get(rb);
 

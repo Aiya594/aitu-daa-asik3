@@ -27,6 +27,7 @@ public class Kruskal {
         Collections.sort(edges);
         metrics.addComparisons(edges.size());
 
+        //use union-find to detect cycles
         UnionFind unionFind = new UnionFind(g.getVertices(), metrics);
 
         for (Edge e : edges) {
@@ -35,14 +36,16 @@ public class Kruskal {
             String u = e.getFrom();
             String v = e.getTo();
 
+            //if u and v belong to diff sets adding this edge will not create a cycle
             if (!unionFind.find(u).equals(unionFind.find(v))) {
-                boolean merged = unionFind.union(u, v);
+                boolean merged = unionFind.union(u, v); //merging u and v
                 if (merged) {
-                    mst.add(e);
+                    mst.add(e); //then store this edge to the result mst and update totalCost
                     totalCost += e.getWeight();
 
                     metrics.incEdgeAdditions();
 
+                    //stops when the size of mst will be equal to v-1
                     if (mst.size() == g.vertexCount() - 1) {
                         break;
                     }
