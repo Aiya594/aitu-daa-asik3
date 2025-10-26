@@ -62,6 +62,7 @@ For all datasets correctness confirmed:
 * Both algorithms handled all graphs successfully
 
 ---
+
 ### Prim and Kruskal Algorithms Comparison in Practice
 
 | Aspect                     | Prim’s Results                                                        | Kruskal’s Results                                                                  |
@@ -78,6 +79,17 @@ For all datasets correctness confirmed:
 
 ---
 ### Conclusion
+
+#### Overall
+
+| Aspect    | Kruskal               | Prim                |
+|-----------|-----------------------|:--------------------|
+| Strategy  | Edge-based            | Vertex-based        |
+| Structure | Union-Find            | Priority Queue      |
+| Sorting   | Sort all edges once   | Dynamically uses heap |
+| Efficiency | O(E log E)            | O(E log V)          |
+| Cycle check | Union-Find            | `visited` set       |
+| Best for  |         Sparse graphs | Dense graphs        |
 
 Both **Prim’s** and **Kruskal’s** algorithms successfully optimized the city transportation network by producing identical Minimum Spanning Tree (MST) costs for all datasets, confirming the correctness of both implementations.
 However, their **efficiency and practical behavior** varied depending on graph characteristics.
