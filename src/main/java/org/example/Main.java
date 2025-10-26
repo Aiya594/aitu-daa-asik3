@@ -46,13 +46,13 @@ public class Main {
                     prim.getMstEdges(),
                     prim.getTotalCost(),
                     prim.getMetrics().totalOpers(),
-                    (double) prim.getTimeMs()
+                    prim.getTimeMs()
             );
             Output.AlgorithmResult krusRes = new Output.AlgorithmResult(
                     kruskal.getMstEdges(),
                     kruskal.getTotalCost(),
                     kruskal.getMetrics().totalOpers(),
-                    (double) kruskal.getTimeMs()
+                    kruskal.getTimeMs()
             );
             Map<String,Integer> inputStats = Map.of(
                     "vertices", graph.vertexCount(),
